@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>carol. | Interactive Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Reenie+Beanie&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="intro-overlay" id="intro">
+    <div class="intro-lollipop"></div>
+    <p class="intro-text">opening carol's notebook…</p>
+  </div>
+
+  <header class="site-header">
+    <a href="#hero" class="logo">carol.</a>
+    <nav>
+      <a href="#about">about</a>
+      <a href="#work">work</a>
+      <a href="#trace">say hi</a>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero">
+    <div class="notebook">
+      <div class="sticky-note left-note">
+        fancy<br>seeing<br>you here
+      </div>
+      <div class="hero-content">
+        <h1 class="welcome-text">
+          welcome<br>
+          <span class="to-my">to my</span><br>
+          portfolio
+        </h1>
+        <div class="hero-photo-wrap">
+          <div class="pink-circle"></div>
+          <img src="carol.jpg" alt="Carol" class="hero-photo" />
+        </div>
+      </div>
+      <div class="stars">
+        <span class="star s1">✦</span>
+        <span class="star s2">✧</span>
+        <span class="star s3">★</span>
+        <span class="star s4">✦</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about section">
+    <div class="notebook-inner">
+      <h2 class="section-title">about me!</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="intro">Hey! I'm Carol :)</p>
+          <p>
+            welcome to the part of the website where i'm supposed to talk about myself.
+            i'm a student who loves noticing the little things — the way light falls across
+            a desk after class, the colours in a busy hallway, or a quiet moment under the trees.
+          </p>
+          <p>
+            i enjoy photography and design. i like making things that feel soft, personal,
+            and a little bit nostalgic. still figuring a lot of things out, but i know
+            i want to keep creating and sharing what i see.
+          </p>
+          <p>
+            right now i mostly shoot with my phone and edit on free tools (Canva, Snapseed,
+            Lightroom mobile). i also dabble in simple poster layouts, colour studies,
+            and digital scrapbook pages.
+          </p>
+          <p class="closing">
+            thanks for stopping by — i hope you enjoy looking around ♡
+          </p>
+        </div>
+        <div class="about-photo">
+          <img src="carol.jpg" alt="Carol smiling in school uniform" />
+          <div class="photo-caption sticky-small">one of my fav school days</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="work section">
+    <div class="notebook-inner">
+      <h2 class="section-title">Work - Station</h2>
+      <p class="work-subtitle">click the folders & cards to peek inside</p>
+      <div class="folders">
+        <div class="folder" data-folder="photo">
+          <div class="folder-tab">photography</div>
+          <div class="folder-body">
+            <p>moments i’ve captured around campus & beyond</p>
+            <span class="open-hint">open →</span>
+          </div>
+        </div>
+        <div class="folder" data-folder="design">
+          <div class="folder-tab">designs</div>
+          <div class="folder-body">
+            <p>posters, layouts & little visual experiments</p>
+            <span class="open-hint">open →</span>
+          </div>
+        </div>
+        <div class="folder" data-folder="life">
+          <div class="folder-tab">school life</div>
+          <div class="folder-body">
+            <p>everyday memories worth keeping</p>
+            <span class="open-hint">open →</span>
+          </div>
+        </div>
+      </div>
+      <div class="scrapbook">
+        <h3 class="scrap-title">SCRAPBOOK · carol</h3>
+        <div class="scrap-grid">
+          <div class="scrap-card" data-project="light">
+            <div class="scrap-img c1">light study</div>
+            <p>window light after class</p>
+          </div>
+          <div class="scrap-card" data-project="poster">
+            <div class="scrap-img c2">club poster</div>
+            <p>event poster concept</p>
+          </div>
+          <div class="scrap-card" data-project="palette">
+            <div class="scrap-img c3">colour notes</div>
+            <p>palette explorations</p>
+          </div>
+          <div class="scrap-card" data-project="friends">
+            <div class="scrap-img c4">portraits</div>
+            <p>friends & classmates</p>
+          </div>
+          <div class="scrap-card" data-project="campus">
+            <div class="scrap-img c5">campus walk</div>
+            <p>quiet corners & trees</p>
+          </div>
+          <div class="scrap-card" data-project="scrap">
+            <div class="scrap-img c6">scrap pages</div>
+            <p>digital memory pages</p>
+          </div>
+        </div>
+        <p class="scrap-note">more pieces coming soon — this book is still being filled ♡</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="trace" class="trace section">
+    <div class="notebook-inner">
+      <h2 class="section-title">leave a trace</h2>
+      <p class="work-subtitle">doodle on the canvas or leave a sticky note for carol</p>
+      <div class="trace-tools">
+        <div class="tool-group">
+          <span>colors</span>
+          <button class="color-btn active" data-color="#604734" style="background:#604734"></button>
+          <button class="color-btn" data-color="#e87a9a" style="background:#e87a9a"></button>
+          <button class="color-btn" data-color="#7eb8da" style="background:#7eb8da"></button>
+          <button class="color-btn" data-color="#f0c5d4" style="background:#f0c5d4"></button>
+          <button class="color-btn" data-color="#2d5a3d" style="background:#2d5a3d"></button>
+        </div>
+        <div class="tool-group">
+          <button id="pencil-btn" class="tool-btn active">✏️ Pencil</button>
+          <button id="eraser-btn" class="tool-btn">🧹 Eraser</button>
+          <button id="add-note-btn" class="tool-btn">＋ Add Note</button>
+          <button id="clear-btn" class="tool-btn danger">🗑️ Clear</button>
+        </div>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="doodle-canvas" width="900" height="420"></canvas>
+        <div id="notes-layer"></div>
+      </div>
+      <p class="trace-footer">thanks for leaving a little piece of yourself here ♡</p>
+      <div class="say-hi">
+        <h3 class="say-hi-title">say hi</h3>
+        <p class="say-hi-text">
+          want to chat about photos, design ideas, or just say hello?
+          i’d love to hear from you.
+        </p>
+        <div class="social-links">
+          <a href="mailto:carol@example.com" class="social-btn">✉ email</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener" class="social-btn">instagram</a>
+          <a href="https://tiktok.com/" target="_blank" rel="noopener" class="social-btn">tiktok</a>
+          <a href="https://pinterest.com/" target="_blank" rel="noopener" class="social-btn">pinterest</a>
+        </div>
+        <p class="social-note">(replace these links with carol’s real ones when you have them)</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>made with care for carol · 2026</p>
+  </footer>
+
+  <div id="folder-modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close">✕</button>
+      <h3 id="modal-title"></h3>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

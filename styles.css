@@ -1,0 +1,645 @@
+:root {
+  --paper: #fff6e8;
+  --paper-line: #f0e4c8;
+  --pink: #f7c6d4;
+  --pink-mid: #f0a8bc;
+  --pink-deep: #e87a9a;
+  --pink-soft: #fce8ef;
+  --header-pink: #f8b8c8;
+  --ink: #5c4033;
+  --ink-soft: #8a6b5a;
+  --cream: #fffaf0;
+  --white: #fffcf5;
+  --yellow-note: #fff3a0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
+  overflow-x: hidden;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23e87a9a' d='M12 2l2.4 7.2H22l-6 4.8 2.4 7.2L12 16.8 5.6 21.2 8 14 2 9.2h7.6z'/%3E%3C/svg%3E") 12 12, auto;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: repeating-linear-gradient(transparent, transparent 31px, var(--paper-line) 31px, var(--paper-line) 32px);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.65;
+}
+
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--paper);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.7s ease, visibility 0.7s;
+}
+.intro-overlay.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.intro-lollipop {
+  width: 120px;
+  height: 12px;
+  background: var(--pink-mid);
+  border-radius: 20px;
+  position: relative;
+  animation: lick 1.2s ease-in-out infinite alternate;
+}
+.intro-lollipop::after {
+  content: "";
+  position: absolute;
+  right: -28px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: radial-gradient(circle at 35% 35%, #fce8ef, var(--pink-deep));
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(232, 122, 154, 0.35);
+}
+.intro-text {
+  margin-top: 2rem;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.8rem;
+  color: var(--ink-soft);
+}
+@keyframes lick {
+  from { transform: translateX(-12px); }
+  to { transform: translateX(12px); }
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 2.5rem;
+  background: rgba(248, 184, 200, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid #f0a8bc;
+  box-shadow: 0 4px 20px rgba(232, 122, 154, 0.12);
+}
+.logo {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 2.15rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.logo:hover { transform: scale(1.1) rotate(-3deg); color: var(--pink-deep); }
+nav { display: flex; gap: 1.8rem; }
+nav a {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.55rem;
+  color: var(--ink);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.25s, transform 0.2s;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 3px;
+  background: var(--pink-deep);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+nav a:hover { color: var(--pink-deep); transform: translateY(-2px); }
+nav a:hover::after { width: 100%; }
+
+.hero {
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem 4rem;
+  position: relative;
+}
+.notebook {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  min-height: 520px;
+}
+.sticky-note {
+  position: absolute;
+  background: var(--yellow-note);
+  padding: 1rem 1.15rem;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.55rem;
+  line-height: 1.25;
+  color: var(--ink);
+  box-shadow: 3px 4px 12px rgba(96, 71, 52, 0.15);
+  transform: rotate(-6deg);
+  z-index: 5;
+}
+.left-note {
+  top: 16%;
+  left: 3%;
+  width: 118px;
+  animation: popIn 0.75s 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.left-note::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 40% 35%, #fce8ef, var(--pink-deep));
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.18);
+  z-index: 2;
+}
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.welcome-text {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: clamp(3.3rem, 9.5vw, 6rem);
+  line-height: 0.9;
+  color: var(--ink);
+  text-align: left;
+  font-weight: 400;
+}
+.welcome-text .to-my { font-size: 0.7em; margin-left: 0.12em; }
+.hero-photo-wrap {
+  position: relative;
+  width: 290px;
+  height: 340px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeUp 1.05s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+  filter: drop-shadow(0 14px 32px rgba(232, 122, 154, 0.28));
+}
+.pink-circle {
+  position: absolute;
+  bottom: 8px;
+  width: 245px;
+  height: 245px;
+  background: radial-gradient(circle at 38% 32%, #fce8ef 0%, #f0a8bc 45%, #e87a9a 100%);
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 10px 35px rgba(232, 122, 154, 0.4);
+  transition: transform 0.5s ease;
+}
+.hero-photo {
+  position: relative;
+  z-index: 2;
+  width: 215px;
+  height: 290px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 20px 20px 58% 58% / 14px 14px 45% 45%;
+  border: 6px solid #fff;
+  box-shadow: 0 8px 24px rgba(96, 71, 52, 0.2);
+  transform: rotate(2.5deg);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.hero-photo-wrap:hover .hero-photo { transform: rotate(0deg) scale(1.04); }
+.hero-photo-wrap:hover .pink-circle { transform: scale(1.07); }
+.stars .star {
+  position: absolute;
+  font-size: 1.45rem;
+  color: var(--pink-deep);
+  opacity: 0.55;
+  animation: twinkle 3s ease-in-out infinite;
+}
+.s1 { top: 11%; left: 16%; }
+.s2 { top: 20%; right: 11%; font-size: 1.15rem; animation-delay: 0.7s; }
+.s3 { bottom: 26%; left: 7%; font-size: 1.65rem; animation-delay: 1.3s; }
+.s4 { bottom: 16%; right: 16%; animation-delay: 1.9s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.55) rotate(-14deg); }
+  to { opacity: 1; transform: scale(1) rotate(-6deg); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.2); }
+}
+
+.section { padding: 4.2rem 1.5rem 5rem; }
+.notebook-inner { max-width: 920px; margin: 0 auto; }
+.section-title {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 3.1rem;
+  margin-bottom: 0.35rem;
+  color: var(--ink);
+  position: relative;
+  display: inline-block;
+}
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(90deg, var(--pink) 0%, transparent 95%);
+  z-index: -1;
+  border-radius: 5px;
+  opacity: 0.75;
+}
+.work-subtitle {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.55rem;
+  color: var(--ink-soft);
+  margin-bottom: 2rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+.about-text p { margin-bottom: 1.1rem; font-size: 1.05rem; max-width: 38ch; }
+.about-text .intro {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.9rem;
+  margin-bottom: 0.75rem;
+  color: var(--pink-deep);
+}
+.about-text .closing { font-style: italic; color: var(--ink-soft); }
+.about-photo { position: relative; }
+.about-photo img {
+  width: 100%;
+  max-width: 270px;
+  border-radius: 4px;
+  border: 12px solid #fff;
+  border-bottom-width: 48px;
+  box-shadow: 6px 10px 28px rgba(96, 71, 52, 0.18);
+  transform: rotate(2deg);
+  transition: transform 0.35s ease, box-shadow 0.35s;
+  background: #fff;
+}
+.about-photo:hover img {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 8px 14px 36px rgba(232, 122, 154, 0.2);
+}
+.sticky-small {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.folders {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.folder {
+  width: 200px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.folder:hover { transform: translateY(-12px) rotate(-1.5deg); }
+.folder-tab {
+  color: #fff;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.4rem;
+  padding: 0.4rem 1.05rem;
+  border-radius: 8px 8px 0 0;
+  display: inline-block;
+  margin-left: 12px;
+}
+.folder[data-folder="photo"] .folder-tab { background: #7eb8da; }
+.folder[data-folder="design"] .folder-tab { background: var(--pink-deep); }
+.folder[data-folder="life"] .folder-tab { background: #8fbc8f; }
+.folder-body {
+  background: var(--white);
+  border: 2px solid #edd9c0;
+  border-radius: 0 12px 12px 12px;
+  padding: 1.25rem 1rem;
+  min-height: 115px;
+  box-shadow: 3px 5px 0 rgba(232, 122, 154, 0.08);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+.folder:hover .folder-body {
+  box-shadow: 5px 12px 0 rgba(232, 122, 154, 0.14);
+  border-color: var(--pink-mid);
+}
+.folder-body p { font-size: 0.95rem; margin-bottom: 0.55rem; }
+.open-hint {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.25rem;
+  color: var(--pink-deep);
+}
+
+.scrapbook {
+  background: linear-gradient(180deg, #fffaf5 0%, #fff5f0 100%);
+  border: 2px dashed #e8c8d0;
+  border-radius: 14px;
+  padding: 1.6rem 1.5rem 2rem;
+}
+.scrap-title {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+  color: var(--pink-deep);
+}
+.scrap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 1.2rem;
+}
+.scrap-card {
+  background: #fff;
+  border: 1px solid #f0dce4;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 2px 4px 12px rgba(232, 122, 154, 0.1);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+  cursor: pointer;
+}
+.scrap-card:hover {
+  transform: scale(1.06) rotate(-2deg);
+  box-shadow: 4px 12px 24px rgba(232, 122, 154, 0.2);
+  z-index: 2;
+}
+.scrap-img {
+  height: 118px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.35rem;
+  color: var(--ink-soft);
+}
+.scrap-img.c1 { background: linear-gradient(145deg, #fce8ef, #f8d4e0); }
+.scrap-img.c2 { background: linear-gradient(145deg, #e8f0f8, #d4e4f8); }
+.scrap-img.c3 { background: linear-gradient(145deg, #e8f8e8, #d0f0d0); }
+.scrap-img.c4 { background: linear-gradient(145deg, #f8e8f4, #f0d4e8); }
+.scrap-img.c5 { background: linear-gradient(145deg, #f8f0e8, #f0e4d0); }
+.scrap-img.c6 { background: linear-gradient(145deg, #f0e8f8, #e0d4f0); }
+.scrap-card p {
+  padding: 0.5rem 0.65rem;
+  font-size: 0.85rem;
+  text-align: center;
+  color: var(--ink-soft);
+}
+.scrap-note {
+  margin-top: 1.3rem;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.4rem;
+  text-align: center;
+  color: var(--pink-deep);
+}
+
+.trace-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+  align-items: center;
+}
+.tool-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.tool-group > span {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.3rem;
+  margin-right: 0.3rem;
+  color: var(--pink-deep);
+}
+.color-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+.color-btn:hover, .color-btn.active {
+  transform: scale(1.22);
+  border-color: var(--ink);
+}
+.tool-btn {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9rem;
+  padding: 0.42rem 0.8rem;
+  border: 1.5px solid var(--ink);
+  background: var(--white);
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--ink);
+  transition: background 0.2s, transform 0.2s;
+}
+.tool-btn:hover { transform: translateY(-2px); }
+.tool-btn.active { background: var(--pink); }
+.tool-btn.danger:hover { background: #ffd6d6; }
+
+.canvas-wrap {
+  position: relative;
+  background: #fffef9;
+  border: 2.5px solid #f0d4dc;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 0 30px rgba(247, 198, 212, 0.12), 0 6px 24px rgba(232, 122, 154, 0.1);
+}
+#doodle-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  cursor: crosshair;
+  touch-action: none;
+}
+#notes-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+#notes-layer .user-note {
+  position: absolute;
+  background: var(--yellow-note);
+  padding: 0.65rem 0.85rem;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.25rem;
+  min-width: 95px;
+  max-width: 170px;
+  box-shadow: 3px 4px 10px rgba(0,0,0,0.14);
+  pointer-events: auto;
+  cursor: move;
+}
+.trace-footer {
+  margin-top: 1.25rem;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.45rem;
+  text-align: center;
+  color: var(--pink-deep);
+}
+
+.say-hi {
+  margin-top: 3.5rem;
+  padding: 2.2rem 1.5rem;
+  background: linear-gradient(180deg, #fff5f8 0%, #fff0f4 100%);
+  border: 2px dashed #f0c0cc;
+  border-radius: 14px;
+  text-align: center;
+}
+.say-hi-title {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--pink-deep);
+}
+.say-hi-text {
+  max-width: 36ch;
+  margin: 0 auto 1.4rem;
+  font-size: 1.05rem;
+}
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+.social-btn {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.45rem;
+  padding: 0.4rem 1.2rem;
+  background: #fff;
+  border: 2px solid var(--pink-deep);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.25s, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.social-btn:hover {
+  background: var(--pink);
+  transform: translateY(-4px) scale(1.06);
+}
+.social-note {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(92, 64, 51, 0.35);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+}
+.modal.hidden { display: none; }
+.modal-content {
+  background: var(--cream);
+  border: 3px solid var(--pink-mid);
+  border-radius: 16px;
+  padding: 1.9rem 2.1rem;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  box-shadow: 8px 14px 0 rgba(232, 122, 154, 0.15);
+  animation: modalPop 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.82) translateY(24px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.45rem;
+  cursor: pointer;
+  color: var(--pink-deep);
+}
+#modal-title {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+  color: var(--pink-deep);
+}
+#modal-body p { margin-bottom: 0.8rem; }
+#modal-body ul { margin-left: 1.2rem; margin-bottom: 1rem; }
+
+.site-footer {
+  text-align: center;
+  padding: 2.2rem 1rem 3.2rem;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 1.4rem;
+  color: var(--pink-deep);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 780px) {
+  .site-header { padding: 0.7rem 1.2rem; }
+  nav { gap: 1rem; }
+  nav a { font-size: 1.3rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { order: -1; text-align: center; }
+  .about-photo img { max-width: 220px; }
+  .left-note { display: none; }
+  .hero-photo-wrap { width: 230px; height: 280px; }
+  .pink-circle { width: 190px; height: 190px; }
+  .hero-photo { width: 175px; height: 240px; }
+  .welcome-text { text-align: center; }
+  .hero-content { flex-direction: column-reverse; }
+}
+@media (max-width: 480px) {
+  .folders { justify-content: center; }
+  .folder { width: 160px; }
+}
